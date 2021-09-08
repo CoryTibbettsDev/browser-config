@@ -31,11 +31,11 @@ chromium_input_file="${source_dir}/preferences.json"
 chromium_output_file="${source_dir}/Preferences"
 
 # Check to make sure our config files are there
-if [ ! -e "${firefox_user_js}" ]; then
+if [ ! -f "${firefox_user_js}" ]; then
 	printf "%s: is an invalid file" "${firefox_user_js}" 2>&1
 	exit 1
 fi
-if [ ! -e "${chromium_input_file}" ]; then
+if [ ! -f "${chromium_input_file}" ]; then
 	printf "%s: is an invalid file" "${chromium_input_file}" 2>&1
 	exit 1
 fi
