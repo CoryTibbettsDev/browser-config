@@ -483,23 +483,27 @@ you can clear the cache manually or on a regular basis with an extension
 [5] https://github.com/arkenfox/user.js/wiki/4.2.4-Header-Editor
 */
 user_pref("_user.js.parrot", "1000 syntax error: the parrot's gone to meet 'is maker!");
-/** CACHE */
+/* CACHE */
 /* 1001: disable disk cache
 * [SETUP-PERF] If you think disk cache may help (heavy tab user, high-res video),
 * or you use a hardened Temporary Containers, then feel free to override this
-* [NOTE] We also clear cache on exit (2803) */
+* [NOTE] We also clear cache on exit (2803)
+*/
 user_pref("browser.cache.disk.enable", false);
 /* 1003: disable memory cache
-* capacity: -1=determine dynamically (default), 0=none, n=memory capacity in kibibytes */
+* capacity: -1=determine dynamically (default), 0=none, n=memory capacity in kibibytes
+*/
 // user_pref("browser.cache.memory.enable", false);
 // user_pref("browser.cache.memory.capacity", 0);
 /* 1006: disable permissions manager from writing to disk [RESTART]
 * [NOTE] This means any permission changes are session only
-* [1] https://bugzilla.mozilla.org/967812 */
-  // user_pref("permissions.memory_only", true); // [HIDDEN PREF]
+* [1] https://bugzilla.mozilla.org/967812
+*/
+// user_pref("permissions.memory_only", true); // [HIDDEN PREF]
 /* 1007: disable media cache from writing to disk in Private Browsing
 * [NOTE] MSE (Media Source Extensions) are already stored in-memory in PB
-* [SETUP-WEB] ESR78: playback might break on subsequent loading (1650281) */
+* [SETUP-WEB] ESR78: playback might break on subsequent loading (1650281)
+*/
 user_pref("browser.privatebrowsing.forceMediaMemoryCache", true); // [FF75+]
 user_pref("media.memory_cache_max_size", 65536);
 
@@ -786,7 +790,7 @@ user_pref("privacy.userContext.ui.enabled", true);
 /* 1703: set behaviour on "+ Tab" button to display container menu on left click [FF74+]
  * [NOTE] The menu is always shown on long press and right click
  * [SETTING] General>Tabs>Enable Container Tabs>Settings>Select a container for each new tab */
-   // user_pref("privacy.userContext.newTabContainerOnLeftClick.enabled", true);
+//user_pref("privacy.userContext.newTabContainerOnLeftClick.enabled", true);
 
 /* [SECTION 2000]: PLUGINS / MEDIA / WEBRTC */
 user_pref("_user.js.parrot", "2000 syntax error: the parrot's snuffed it!");

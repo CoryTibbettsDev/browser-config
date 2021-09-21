@@ -11,7 +11,7 @@ if [ -z "${1}" ]; then
 	# from another script or from another directory
 	source_dir="$(pwd)"
 elif [ ! -d "${1}" ]; then
-	printf "Argument one %s: is an invalid directory" "${1}" 2>&1
+	printf "Argument one %s: is an invalid directory" "${1}" >&2
 	exit 1
 else
 	# Have not found any errors so argument 1 seems valid
@@ -21,22 +21,25 @@ fi
 
 # One last check on our chosen directory
 if [ ! -d "${source_dir}" ]; then
-	printf "source_dir %s: is an invalid directory" "${source_dir}" 2>&1
+	printf "source_dir %s: is an invalid directory" "${source_dir}" >&2
 	exit 1
 fi
 
 # Assume our files are in the source directory we have found
-firefox_user_js="${source_dir}/user.js"
-chromium_input_file="${source_dir}/preferences.json"
-chromium_output_file="${source_dir}/Preferences"
+firefox_source_dir="${source_dir}/firefox"
+firefox_user_js="${firefox_source_dir}/user.js"
+
+chromium_source_dir="${source_dir}/chromium"
+chromium_input_file="${chromium_source_dir}/preferences.json"
+chromium_output_file="${chromium_source_dir}/Preferences"
 
 # Check to make sure our config files are there
 if [ ! -f "${firefox_user_js}" ]; then
-	printf "%s: is an invalid file" "${firefox_user_js}" 2>&1
+	printf "%s: is an invalid file" "${firefox_user_js}" >&2
 	exit 1
 fi
 if [ ! -f "${chromium_input_file}" ]; then
-	printf "%s: is an invalid file" "${chromium_input_file}" 2>&1
+	printf "%s: is an invalid file" "${chromium_input_file}" >&2
 	exit 1
 fi
 
@@ -55,11 +58,11 @@ get_firefox_profile_dir "esr"
 # If we found the right directory link the user.js
 [ -n "${firefox_profile_dir}" ] &&
 	ln -sfv "${firefox_user_js}" "${firefox_profile_dir}" ||
-	printf "Could not find firefox profile directory\n"
+	printf "Could not find firefox profile directory\n" >&2
 
 # Chromium
 # Strip all whitespace from the chromium json file
-# This may not be needed by some sources say chromium does not like
+# This may not be needed but some sources say chromium does not like
 # whitespace in the Preferences file so it seems safer to do it to me
 tr -d " \n\r" < "${chromium_input_file}" > "${chromium_output_file}"
 
