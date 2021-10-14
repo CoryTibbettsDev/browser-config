@@ -70,4 +70,4 @@ chromium_config_dir="$HOME/.config/chromium/Default"
 [ -d "${chromium_config_dir}" ] ||
 	mkdir -p "${chromium_config_dir}"
 
-ln -svf "${chromium_output_file}" "${chromium_config_dir}/Preferences"
+ln -sf "${chromium_output_file}" "${chromium_config_dir}/Preferences"
